@@ -22,3 +22,7 @@ Route::get('users', 'UserController@list')
 
 Route::get('users/{id}', 'User\ProfileController@show')
     ->name('get.user.profile');
+
+Route::get('users/{id}/address', 'User\ShowAddress')
+    ->where(['id' => '[0-9]+'])
+    ->name('get.user.address');
