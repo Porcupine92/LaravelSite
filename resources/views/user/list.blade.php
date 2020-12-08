@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-<div>Hello: {{ $requestName }}</div>
+    <h1>User List</h1>
+    <ul>
+        <li>Tom</li>
+        <li>Jacob</li>
+    </ul>
 </body>
 </html>
