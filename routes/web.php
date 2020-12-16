@@ -26,3 +26,18 @@ Route::get('users/{id}', 'User\ProfileController@show')
 Route::get('users/{id}/address', 'User\ShowAddress')
     ->where(['id' => '[0-9]+'])
     ->name('get.user.address');
+
+// Route::resource('games', 'GameController');
+
+Route::resource('games', 'GameController')
+    ->only([
+        'index',
+        'show'
+    ]);
+
+Route::resource('admin/games', 'GameController')
+    ->only([
+        'store',
+        'create',
+        'destroy'
+    ]);
