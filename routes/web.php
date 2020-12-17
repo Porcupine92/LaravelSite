@@ -23,6 +23,9 @@ Route::get('users', 'UserController@list')
 Route::get('users/test/{id}', 'UserController@testShow')
     ->name('get.users.test.show');
 
+Route::get('users/example/{id}', 'UserController@exampleShow')
+    ->name('get.users.example.show');
+
 Route::post('users/test/{id}', 'UserController@testStore')
     ->name('post.users.test.store');
 
