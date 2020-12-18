@@ -20,17 +20,11 @@ Route::get('/', function () {
 Route::get('users', 'UserController@list')
     ->name('get.users');
 
-Route::get('users/test/{id}', 'UserController@testShow')
-    ->name('get.users.test.show');
+Route::get('users/{userId}', 'UserController@show')
+    ->name('get.user.show');
 
-Route::get('users/example/{id}', 'UserController@exampleShow')
-    ->name('get.users.example.show');
-
-Route::post('users/test/{id}', 'UserController@testStore')
-    ->name('post.users.test.store');
-
-Route::get('users/{id}', 'User\ProfileController@show')
-    ->name('get.user.profile');
+// Route::get('users/{id}/profile', 'User\ProfileController@show')
+//     ->name('get.user.profile');
 
 Route::get('users/{id}/address', 'User\ShowAddress')
     ->where(['id' => '[0-9]+'])
