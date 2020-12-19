@@ -1,10 +1,7 @@
-@extends('layout.main')
-
-@section('content')
-    <h1>User Profile</h1>
-    <h2>Application Name: {{ $applicationName }}</h2>
+<html>
+    <h1>Application: {{ $applicationName }}</h1>
+    <h2>Profil</h2>
     <ul>
-        <li>Name: Tom</li>
+        <li>Name: Tomaaa</li>
     </ul>
-@endsection
-
+</html>
