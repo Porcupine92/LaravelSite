@@ -12,8 +12,20 @@ class UserController extends Controller
 {
     public function list(HttpRequest $request)
     {
-        dd($request);
-        return view('user.list');
+        $users = [];
+
+        $faker = Factory::create();
+        $count = $faker->numberBetween(3, 15);
+        for ($i = 0; $i < $count; $i++) {
+            $users[] = [
+                'id' => $faker->numberBetween(1, 1000),
+                'name' => $faker->firstName
+            ];
+        }
+
+        return view('user.list', [
+            'users' => $users
+        ]);
     }
 
     public function show(int $userId)
@@ -32,7 +44,8 @@ class UserController extends Controller
         ];
 
         return view('user.show', [
-            'user' => $user
+            'user' => $user,
+            'nick' => true
         ]);
     }
 }

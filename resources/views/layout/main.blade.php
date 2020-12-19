@@ -9,7 +9,7 @@
     </title>
     <style>
         td {
-            padding-right: 15px;
+            padding-right: 25px;
         }
     </style>
 </head>
