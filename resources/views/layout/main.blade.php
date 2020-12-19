@@ -8,6 +8,9 @@
         @yield('title', $applicationName)
     </title>
     <style>
+        ul {
+            list-style: none;
+        }
         td {
             padding-right: 25px;
         }
@@ -16,14 +19,8 @@
 <body>
     <h1>{{ $applicationName }}</h1>
 
-    <div class="sidebar">
-        @section('sidebar')  {{-- dyrektywa section definiuje jakąś sekcje która można gdzie wkleić w innym blade'ie --}}
-            <ul>
-                <li><a href="#">...</a></li>
-            </ul>
-        @show  {{-- dyrektywa show to połączenie endsection i yield, zarazem zamyka sekcje i ją pokazuje --}}
+    @include('layout.sidebar')
 
-    </div>
     <div class="container">
         @yield('content') {{-- wyświetla zawartość sekcji o podanej nazwie --}}
     </div>

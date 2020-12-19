@@ -26,7 +26,7 @@ class GameController extends Controller
             ];
         }
 
-        return view('user.game', [
+        return view('games.gamesList', [
             'gamesList' => $gamesList
         ]);
     }
@@ -58,9 +58,19 @@ class GameController extends Controller
      * @param  int  $game
      * @return \Illuminate\Http\Response
      */
-    public function show($game)
+    public function show()
     {
-        //
+        $faker = Factory::create();
+        $game[] = [
+            'name' => $faker->name,
+            'organization' => $faker->company,
+            'shortStory' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+            'playingHours' => $faker->numberBetween(1, 100),
+        ];
+
+        return view('games.game', [
+            'game' => $game
+        ]);
     }
 
     /**
