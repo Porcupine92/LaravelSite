@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+    @include('user.alert', ['messageData' => $alert])
     <div class="card">
         <h5 class="card-header">{{ $user['name'] }}</h5>
         <div class="card-body">
