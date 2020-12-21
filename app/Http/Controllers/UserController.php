@@ -68,7 +68,7 @@ class UserController extends Controller
 
         $message = $request->session()->get('alert');
 
-        dump($message);
+        // dump($message);
 
         $faker = Factory::create();
 
