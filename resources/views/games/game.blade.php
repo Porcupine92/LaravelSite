@@ -1,11 +1,24 @@
 @extends('layout.main')
 
 @section('content')
-<div style="width: 1000px; height: 1000px; margin: 100px auto; text-align:center;">
-    <ul>
-        @foreach ($game as $item)
-            <li>{{ $item }}</li>
-        @endforeach
-    </ul>
+<div class="card"></div>
+@if (!empty($game))
+    <h5 class="card-header">{{ $game->title }}</h5>
+    <div class="card-body">
+        <ul>
+            <li>Id: {{ $game->id }}</li>
+            <li>Nazwa: {{ $game->title }}</li>
+            <li>Wydawca: {{ $game->publisher_id }}</li>
+            <li>Kategoria: {{ $game->genre_id }}</li>
+            <li>
+                Opis:
+                <div>{{ $game->description }}</div>
+            </li>
+        </ul>
+        <a href="{{ route('games.index') }}" class="btn btn-light">Lista gier</a>
+    </div>
+@else
+    <h5 class="card-header">Brak danych do wyświetlenia</h5>
+@endif
 </div>
 @endsection

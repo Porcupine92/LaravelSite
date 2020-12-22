@@ -22,13 +22,13 @@ class GamesSeeder extends Seeder
 
         $games = [];
 
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $games[] = [
                 'title' => $faker->words($faker->numberBetween(1, 3), true),
                 'description' => $faker->sentence,
                 'publisher_id' => $faker->numberBetween(1, 1000),
                 'genre_id' => $faker->numberBetween(1, 5),
-                'score' => $faker->numberBetween(1, 10),
+                'score' => $faker->numberBetween(1, 100),
                 'requirements' => $faker->randomElement(['Low', 'Medium', 'High', 'Extra High']),
                 'pegi' => $faker->numberBetween(3, 18),
                 'release_at' => $faker->date($format = 'Y-m-d', $max = 'now'),

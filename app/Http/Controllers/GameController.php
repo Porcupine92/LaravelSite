@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Faker\Factory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class GameController extends Controller
 {
@@ -12,22 +13,31 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
-        $faker = Factory::create();
-        $i = 0;
-
-        for ($i; $i <= 10; $i++) {
-            $gamesList[] = [
-                'name' => $faker->name,
-                'organization' => $faker->company,
-                'shortStory' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                'playingHours' => $faker->numberBetween(1, 100),
-            ];
-        }
+        $games = DB::table('games')
+            ->select('id', 'title', 'score', 'genre_id')
+            ->get();
 
         return view('games.gamesList', [
-            'gamesList' => $gamesList
+            'games' => $games
+        ]);
+    }
+
+    public function show(int $gameId): View
+    {
+        // $game = DB::table('games')
+        //     ->where('id', $gameId)
+        //     ->get();
+
+        // $game = DB::table('games')
+        //     ->where('id', $gameId)
+        //     ->first();
+
+        $game = DB::table('games')->find($gameId); // find to podobnie jak wyżej ale działą tylko z kluczem głównym
+
+        return view('games.game', [
+            'game' => $game
         ]);
     }
 
@@ -52,26 +62,6 @@ class GameController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $faker = Factory::create();
-        $game[] = [
-            'name' => $faker->name,
-            'organization' => $faker->company,
-            'shortStory' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-            'playingHours' => $faker->numberBetween(1, 100),
-        ];
-
-        return view('games.game', [
-            'game' => $game
-        ]);
-    }
 
     /**
      * Show the form for editing the specified resource.

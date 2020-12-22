@@ -22,7 +22,7 @@ class MovesSeeder extends Seeder
 
         $movies = [];
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $movies[] = [
                 'name' => $faker->words($faker->numberBetween(1, 3), true),
                 'duration' => $faker->numberBetween(60, 120),
