@@ -28,7 +28,7 @@ class GamesSeeder extends Seeder
                 'description' => $faker->sentence,
                 'publisher_id' => $faker->numberBetween(1, 1000),
                 'genre_id' => $faker->numberBetween(1, 5),
-                'score' => $faker->numberBetween(1, 100),
+                'score' => $faker->numberBetween(1, 10),
                 'requirements' => $faker->randomElement(['Low', 'Medium', 'High', 'Extra High']),
                 'pegi' => $faker->numberBetween(3, 18),
                 'release_at' => $faker->date($format = 'Y-m-d', $max = 'now'),

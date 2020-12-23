@@ -8,19 +8,93 @@ use Illuminate\View\View;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(): View
     {
+        // $games = DB::table('games')                      // Zwykłe wyciąganie inforamcji z danej tabeli z wybranymi kolumnami
+        //     ->select('id', 'title', 'score', 'genre_id')
+        //     ->get();
+
         $games = DB::table('games')
-            ->select('id', 'title', 'score', 'genre_id')
+            ->join('genres', 'games.genre_id', '=', 'genres.id')
+            ->select(
+                'games.id',
+                'games.title',
+                'games.score',
+                'genres.id as table_genre_id',
+                'genres.name as genre_name'
+            )
+            // ->orderBy('title', 'desc') // sortuje po tytule malejąco, domyślnie jest rosnąco
+            // ->orderByDesc('score') // tutaj tylko malejąco, tylko nazwa kolumny
+            // ->limit(3) // Limit zwracanych rekordów
+            // ->offset(3) // Ile rekordów ma zostać pominiętych, bez ustalania offsetu, automatycznie domyślnie utalony jest na 0
+            ->get();
+        // Wyciaganie informacji z tabeli i łączenie ją z inną na podstawie (tutaj) id. W przypadku joina trzeba
+        // pamiętać o tym żeby w selekcie wskazywać kolumny z konkretnych tabel, a w wypadku gdy nazwy są znierzne
+        // dobrze jest nadawać aliasy
+
+        return view('games.gameList', [
+            'games' => $games
+        ]);
+    }
+
+    public function dashboard(): View
+    {
+        $bestGames = DB::table('games')
+            ->join('genres', 'games.genre_id', '=', 'genres.id')
+            ->select(
+                'games.id',
+                'games.title',
+                'games.score',
+                'genres.id as table_genre_id',
+                'genres.name as genre_name'
+            )
+            ->where('score', '>', 9) // Sposób z operatorem
+            // ->where('score', 90) // Sposób bez operatora, domyślnie wtedy brane jest =
             ->get();
 
-        return view('games.gamesList', [
-            'games' => $games
+        // $query = DB::table('games')
+        //     ->select('id', 'title', 'score', 'genre_id')
+        //     ->where([
+        //         ['score', '>', 50],
+        //         ['id', 55]
+        //         // Sposób gdy podaje wiele where
+        //     ]);
+
+        // $query = DB::table('games')
+        //     ->select('id', 'title', 'score', 'genre_id')
+        //     ->where('score', '>', 95)
+        //     ->orWhere('id', 55);    // Warunek lub
+
+        $query = DB::table('games')
+            ->select('id', 'title', 'score', 'genre_id');
+        // ->whereIn('id', [27, 47, 53]); // Gdy dana kolumna posiada podane warunki
+        // ->whereBetween('id', [33, 35]); // Gdy id jest pomiędzy pierwszą a drugą własnością
+
+        // dd($query->get());
+
+        $stat = [
+            'count' => DB::table('games')->count(),
+            'countScoreGtSeven' => DB::table('games')->where('score', '>', 7)->count(),
+            'max' => DB::table('games')->max('score'),
+            'min' => DB::table('games')->min('score'),
+            'avg' => DB::table('games')->avg('score')
+            // Funkcje agregujące
+        ];
+
+        $scoreStats = DB::table('games')
+            ->select(DB::raw('count(*) as count'), 'score')
+            ->having('score', '>', 6) // having działa jak where ale dopiero po zgrupowaniu, where przed zgrupowaniem
+            ->groupBy('score')
+            ->orderByDesc('count')
+            ->get();
+
+        // dd($scoreStats->get());
+        // dd($scoreStats->toSql());
+
+        return view('games.dashboard', [
+            'stats' => $stat,
+            'bestGames' => $bestGames,
+            'scoreStats' => $scoreStats
         ]);
     }
 

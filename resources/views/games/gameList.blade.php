@@ -31,7 +31,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $game->title }}</td>
                                 <td>{{ $game->score }}</td>
-                                <td>{{ $game->genre_id }}</td>
+                                <td>{{ $game->genre_name }}</td>
                                 <td>
                                     <a href="{{ route('games.show', ['game' => $game->id]) }}"> Szczegóły</a>
                                 </td>
