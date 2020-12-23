@@ -27,10 +27,13 @@ class GameController extends Controller
             // ->orderByDesc('score') // tutaj tylko malejąco, tylko nazwa kolumny
             // ->limit(3) // Limit zwracanych rekordów
             // ->offset(3) // Ile rekordów ma zostać pominiętych, bez ustalania offsetu, automatycznie domyślnie utalony jest na 0
-            ->get();
+            // ->simplePaginate(10);
+            ->paginate(10);
         // Wyciaganie informacji z tabeli i łączenie ją z inną na podstawie (tutaj) id. W przypadku joina trzeba
         // pamiętać o tym żeby w selekcie wskazywać kolumny z konkretnych tabel, a w wypadku gdy nazwy są znierzne
         // dobrze jest nadawać aliasy
+
+        // Wygląd paginacji możemy zmodyfikować podająd do metody links() nazwę szablonu
 
         return view('games.gameList', [
             'games' => $games
