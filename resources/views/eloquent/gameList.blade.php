@@ -10,6 +10,7 @@
                         <thead>
                             <tr>
                                 <th>Lp</th>
+                                <th>Id</th>
                                 <th>Tytuł</th>
                                 <th>Ocena</th>
                                 <th>Kategoria</th>
@@ -19,6 +20,7 @@
                         <tfoot>
                             <tr>
                                 <th>Lp</th>
+                                <th>Id</th>
                                 <th>Tytuł</th>
                                 <th>Ocena</th>
                                 <th>Kategoria</th>
@@ -29,11 +31,12 @@
                         @foreach ($games ?? [] as $game)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $game->id }}</td>
                                 <td>{{ $game->title }}</td>
                                 <td>{{ $game->score }}</td>
                                 <td>{{ $game->genre_name }}</td>
                                 <td>
-                                    <a href="{{ route('games.show', ['game' => $game->id]) }}"> Szczegóły</a>
+                                    <a href="{{ route('games.e.show', ['game' => $game->id]) }}"> Szczegóły</a>
                                 </td>
                             </tr>
                         @endforeach
