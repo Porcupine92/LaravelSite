@@ -54,8 +54,10 @@ Route::group([
 Route::group([
     'prefix' => 'e/games',
     'namespace' => 'Game',
-    'as' => 'games.e.'
+    'as' => 'games.e.',
+    // 'middleware' => ['profiling']
 ], function () {
+
     Route::get('dashboard', 'EloquentController@dashboard')
         ->name('dashboard');
 
@@ -63,5 +65,19 @@ Route::group([
         ->name('list');
 
     Route::get('{game}', 'EloquentController@show')
-        ->name('show');
+        ->name('show')
+        // ->middleware('profiling');
+
+    // Route::middleware(['profiling'])->group(
+    //     function () {
+    //         Route::get('dashboard', 'EloquentController@dashboard')
+    //             ->name('dashboard');
+
+    //         Route::get('', 'EloquentController@index')
+    //             ->name('list');
+
+    //         Route::get('{game}', 'EloquentController@show')
+    //             ->name('show');
+    //     }
+    // );
 });
