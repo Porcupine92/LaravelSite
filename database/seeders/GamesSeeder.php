@@ -26,7 +26,7 @@ class GamesSeeder extends Seeder
             $games[] = [
                 'title' => $faker->words($faker->numberBetween(1, 3), true),
                 'description' => $faker->sentence,
-                'publisher_id' => $faker->numberBetween(1, 1000),
+                'publisher_id' => $faker->numberBetween(1, 7),
                 'genre_id' => $faker->numberBetween(1, 5),
                 'score' => $faker->numberBetween(1, 10),
                 'requirements' => $faker->randomElement(['Low', 'Medium', 'High', 'Extra High']),

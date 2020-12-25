@@ -8,8 +8,8 @@
         <ul>
             <li>Id: {{ $game->id }}</li>
             <li>Nazwa: {{ $game->title }}</li>
-            <li>Wydawca: {{ $game->publisher_id }}</li>
-            <li>Kategoria: {{ $game->genre_id }}</li>
+            <li>Wydawca: {{ $game->publisher->name }}</li>
+            <li>Gatunek: {{ $game->genre->name }}</li>
             <li>
                 Opis:
                 <div>{{ $game->description }}</div>

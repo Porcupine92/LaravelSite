@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs">Liczba gier 70+</div>
+                            <div class="text-xs">Liczba gier 7+</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['countScoreGtSeven'] }}</div>
                         </div>
                         <div class="col-auto">
@@ -117,7 +117,7 @@
                                 <th>Lp</th>
                                 <th>Tytuł</th>
                                 <th>Ocena</th>
-                                <th>Kategoria</th>
+                                <th>Gatunek</th>
                                 <th>Opcje</th>
                             </tr>
                         </thead>
@@ -126,7 +126,7 @@
                                 <th>Lp</th>
                                 <th>Tytuł</th>
                                 <th>Ocena</th>
-                                <th>Kategoria</th>
+                                <th>Gatunek</th>
                                 <th>Opcje</th>
                             </tr>
                         </tfoot>
@@ -136,7 +136,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $game->title }}</td>
                                 <td>{{ $game->score }}</td>
-                                <td>{{ $game->genre_name }}</td>
+                                <td>{{ $game->genre->name }}</td>
                                 <td>
                                     <a href="{{ route('games.e.show', ['game' => $game->id]) }}"> Szczegóły</a>
                                 </td>
