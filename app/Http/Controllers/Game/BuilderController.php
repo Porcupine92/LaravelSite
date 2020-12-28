@@ -40,9 +40,6 @@ class BuilderController extends Controller
             ->where('score', '>', 9)
             ->get();
 
-        $query = DB::table('games')
-            ->select('id', 'title', 'score', 'genre_id');
-
         $stat = [
             'count' => DB::table('games')->count(),
             'countScoreGtSeven' => DB::table('games')->where('score', '>', 7)->count(),
