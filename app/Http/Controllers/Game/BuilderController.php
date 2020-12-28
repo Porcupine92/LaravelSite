@@ -21,7 +21,7 @@ class BuilderController extends Controller
             )
             ->paginate(10);
 
-        return view('builder.gameList', [
+        return view('game.builder.gameList', [
             'games' => $games
         ]);
     }
@@ -58,7 +58,7 @@ class BuilderController extends Controller
             ->orderByDesc('count')
             ->get();
 
-        return view('builder.dashboard', [
+        return view('game.builder.dashboard', [
             'stats' => $stat,
             'bestGames' => $bestGames,
             'scoreStats' => $scoreStats
@@ -69,7 +69,7 @@ class BuilderController extends Controller
     {
         $game = DB::table('games')->find($gameId);
 
-        return view('builder.game', [
+        return view('game.builder.game', [
             'game' => $game
         ]);
     }

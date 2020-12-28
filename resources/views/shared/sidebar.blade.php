@@ -10,6 +10,16 @@
 </a>
 
 <div class="sb-sidenav-menu-heading">Gry</div>
+<a class="nav-link" href="{{ route('games.dashboard') }}">
+    <div class="sb-nav-link-icon"><i class="fab fa-xbox"></i></div>
+    Dashboard
+</a>
+<a class="nav-link" href="{{ route('games.list') }}">
+    <div class="sb-nav-link-icon"><i class="fab fa-xbox"></i></div>
+    Lista
+</a>
+
+<div class="sb-sidenav-menu-heading">Gry Builder</div>
 <a class="nav-link" href="{{ route('builder.b.dashboard') }}">
     <div class="sb-nav-link-icon"><i class="fab fa-xbox"></i></div>
     Dashboard

@@ -14,7 +14,7 @@ class EloquentController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('eloquent.gameList', [
+        return view('game.eloquent.gameList', [
             'games' => $games
         ]);
     }
@@ -41,7 +41,7 @@ class EloquentController extends Controller
             ->orderByDesc('count')
             ->get();
 
-        return view('eloquent.dashboard', [
+        return view('game.eloquent.dashboard', [
             'stats' => $stats,
             'bestGames' => $bestGames,
             'scoreStats' => $scoreStats
@@ -52,7 +52,7 @@ class EloquentController extends Controller
     {
         $game = Game::find($gameId);
 
-        return view('eloquent.game', [
+        return view('game.eloquent.game', [
             'game' => $game
         ]);
     }
