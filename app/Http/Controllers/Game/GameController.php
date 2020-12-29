@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Game;
 
 use App\Http\Controllers\Controller;
 use App\Repository\GameRepository;
-use App\Service\FakeService;
 use Illuminate\View\View;
 
 class GameController extends Controller
@@ -12,9 +11,8 @@ class GameController extends Controller
 
     private GameRepository $gameRepository;
 
-    public function __construct(GameRepository $repository, FakeService $config)
+    public function __construct(GameRepository $repository)
     {
-        // dd($config);
         $this->gameRepository = $repository;
     }
 
