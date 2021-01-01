@@ -14,10 +14,6 @@ class GameController extends Controller
 
     public function __construct(GameRepository $repository)
     {
-<<<<<<< HEAD
-        dump($repository);
-=======
->>>>>>> 820e025e02171cf186dc1ebddf9fb937cf9ce1b0
         $this->gameRepository = $repository;
     }
 
