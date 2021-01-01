@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth'])->group(function () {
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', 'Home\MainPage')
@@ -37,20 +37,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     // GAMES
-    Route::group([
-        'prefix' => 'b/games',
-        'namespace' => 'Game',
-        'as' => 'builder.b.'
-    ], function () {
-        Route::get('dashboard', 'BuilderController@dashboard')
-            ->name('dashboard');
-
-        Route::get('', 'BuilderController@index')
-            ->name('list');
-
-        Route::get('{game}', 'BuilderController@show')
-            ->name('show');
-    });
 
     Route::group([
         'prefix' => 'games',
@@ -67,37 +53,6 @@ Route::group(['middleware' => ['auth']], function () {
             ->name('show');
     });
 
-
-    Route::group([
-        'prefix' => 'e/games',
-        'namespace' => 'Game',
-        'as' => 'games.e.',
-        // 'middleware' => ['profiling']
-    ], function () {
-
-        Route::get('dashboard', 'EloquentController@dashboard')
-            ->name('dashboard');
-
-        Route::get('', 'EloquentController@index')
-            ->name('list');
-
-        Route::get('{game}', 'EloquentController@show')
-            ->name('show');
-        // ->middleware('profiling');
-
-        // Route::middleware(['profiling'])->group(
-        //     function () {
-        //         Route::get('dashboard', 'EloquentController@dashboard')
-        //             ->name('dashboard');
-
-        //         Route::get('', 'EloquentController@index')
-        //             ->name('list');
-
-        //         Route::get('{game}', 'EloquentController@show')
-        //             ->name('show');
-        //     }
-        // );
-    });
 });
 
 Auth::routes();
