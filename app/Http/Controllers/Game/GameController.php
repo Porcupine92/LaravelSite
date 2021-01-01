@@ -14,6 +14,7 @@ class GameController extends Controller
 
     public function __construct(GameRepository $repository)
     {
+        dump($repository);
         $this->gameRepository = $repository;
     }
 
