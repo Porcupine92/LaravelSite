@@ -24,8 +24,8 @@ class AlterModelTables extends Migration
             $table->id();
             $table->integer('steam_appid')->index();
             $table->integer('relation_id')->nullable()->index();
-            $table->string('name', 100)->index();
-            $table->string('type', 20)->default('game')->index();
+            $table->string('name', 250)->index();
+            $table->string('type', 50)->default('game')->index();
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
             $table->text('about')->nullable();
@@ -35,9 +35,9 @@ class AlterModelTables extends Migration
             $table->string('price_currency', 3)->nullable();
 
             $table->string('metacritic_score', 10)->nullable();
-            $table->string('metacritic_url', 150)->nullable();
-            $table->string('release_date', 30);
-            $table->string('languages', 100);
+            $table->string('metacritic_url', 250)->nullable();
+            $table->string('release_date', 200);
+            $table->string('languages', 700)->nullable();
 
             $table->timestamps();
         });
@@ -51,7 +51,7 @@ class AlterModelTables extends Migration
 
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->index();
+            $table->string('name', 250)->index();
 
             $table->timestamps();
         });
@@ -65,7 +65,7 @@ class AlterModelTables extends Migration
 
         Schema::create('developers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->index();
+            $table->string('name', 250)->index();
 
             $table->timestamps();
         });
@@ -80,8 +80,8 @@ class AlterModelTables extends Migration
         Schema::create('screenshots', function (Blueprint $table) {
             $table->id();
             $table->integer('game_id')->index();
-            $table->string('thumbnail', 100);
-            $table->string('url', 100);
+            $table->string('thumbnail', 750);
+            $table->string('url', 750);
             $table->timestamps();
         });
 
@@ -89,13 +89,13 @@ class AlterModelTables extends Migration
             $table->id();
             $table->integer('game_id')->index();
             $table->integer('original_id')->index();
-            $table->string('name', 80);
+            $table->string('name', 250);
             $table->boolean('highlight');
-            $table->string('thumbnail', 100);
-            $table->string('webm_480', 100);
-            $table->string('webm_url', 100);
-            $table->string('mp4_480', 100);
-            $table->string('mp4_url', 100);
+            $table->string('thumbnail', 500);
+            $table->string('webm_480', 250);
+            $table->string('webm_url', 250);
+            $table->string('mp4_480', 250);
+            $table->string('mp4_url', 250);
             $table->timestamps();
         });
     }
@@ -113,8 +113,8 @@ class AlterModelTables extends Migration
         Schema::dropIfExists('screenshots');
         Schema::dropIfExists('movies');
 
-        Schema::dropIfExists('gamesDevelopers');
-        Schema::dropIfExists('gamesPublishers');
-        Schema::dropIfExists('gamesGenres');
+        Schema::dropIfExists('gameDevelopers');
+        Schema::dropIfExists('gamePublishers');
+        Schema::dropIfExists('gameGenres');
     }
 }
