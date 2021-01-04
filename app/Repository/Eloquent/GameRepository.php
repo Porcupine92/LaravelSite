@@ -36,6 +36,23 @@ class GameRepository implements GameRepositoryInterface
             ->paginate($limit);
     }
 
+    public function filterBy(?string $phrase, string $type = self::TYPE_DEFAULT, int $limit = 15)
+    {
+        $query = $this->gameModel
+        ->with('genres')
+        ->orderBy('created_at');
+
+        if($type !== self::TYPE_DEFAULT) {
+            $query->where('type', $type);
+        }
+
+        if ($phrase) {
+            $query->whereRaw('name like ?', ["$phrase%"]);
+        }
+
+        return $query->paginate($limit);
+    }
+
     public function best()
     {
         return $this->gameModel
